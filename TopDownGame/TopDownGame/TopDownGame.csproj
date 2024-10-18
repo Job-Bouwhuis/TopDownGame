@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
-    <PackageReference Include="WinterRose.Monogame" Version="1.1.400" />
+    <PackageReference Include="WinterRose.Monogame" Version="1.1.401" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Content\Font.spritefont">

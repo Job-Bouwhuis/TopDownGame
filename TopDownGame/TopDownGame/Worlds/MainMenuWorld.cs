@@ -16,13 +16,13 @@ namespace TopDownGame.Worlds
         public override void Build(in World world)
         {
             world.Name = "Main Menu";
-
+            Application.Current.CameraIndex = -1;
             // create objects
             var startButton = world.CreateObject<Button>("playButton");
             startButton.text.text = "Start Game";
             startButton.owner.AddStartupBehavior(obj =>
             {
-                obj.transform.position = new Vector2(MonoUtils.ScreenCenter.X, MonoUtils.ScreenCenter.y);
+                obj.transform.position = new Vector2(MonoUtils.ScreenCenter.X, MonoUtils.ScreenCenter.Y);
             });
 
             startButton.OnClick += () =>

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;
+using WinterRose;
 using WinterRose.Monogame;
 using WinterRose.Monogame.Worlds;
 

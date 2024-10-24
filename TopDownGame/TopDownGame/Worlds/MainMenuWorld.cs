@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TopDownGame.Components;
 using WinterRose.Monogame;
 using WinterRose.Monogame.UI;
 using WinterRose.Monogame.Worlds;
@@ -36,6 +32,12 @@ namespace TopDownGame.Worlds
             {
                 obj.transform.position = new Vector2(MonoUtils.ScreenCenter.X, 120);
             });
+
+            var bullet = titleText.AttachComponent<Bullet>();
+            int key = bullet.AdditiveDamageModifier.Add(2);
+            bullet.AdditiveDamageModifier.Remove(key);
+
+            float damage = bullet.GetDamageDealt();
 
         }
     }

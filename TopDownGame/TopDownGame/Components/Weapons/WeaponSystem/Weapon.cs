@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WinterRose.Monogame;
 
-namespace TopDownGame.Components
+namespace TopDownGame.Components.Weapons.WeaponSystem
 {
     internal class Weapon : ObjectBehavior
     {
-        
+
     }
 }

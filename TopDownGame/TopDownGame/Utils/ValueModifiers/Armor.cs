@@ -9,7 +9,7 @@ namespace TopDownGame.Utils.ValueModifiers;
 /// <summary>
 /// Holds armor value for whatever can be damaged.... or anything else really.... lmao
 /// </summary>
-internal class ArmorModifier : ValueModifier<float>
+internal class Armor : ValueModifier<float>
 {
     /// <summary>
     /// The base armor. a value between 0 and 1. Where 0 is full invulnerability <br></br><br></br>
@@ -26,7 +26,7 @@ internal class ArmorModifier : ValueModifier<float>
             baseArmor = value;
         }
     }
-    public AdditiveModifier<float> TotalArmorModifier { get; set; } = new();
+    public AdditiveModifier<float> AddtitiveArmorModifier { get; set; } = new();
     private float baseArmor = .99f;
 
     /// <summary>
@@ -37,7 +37,7 @@ internal class ArmorModifier : ValueModifier<float>
     /// <exception cref="NotImplementedException"></exception>
     public override float Modify(float value)
     {
-        float armor = TotalArmorModifier.Modify(BaseArmor);
+        float armor = AddtitiveArmorModifier.Modify(BaseArmor);
         return value * armor;
     }
 }

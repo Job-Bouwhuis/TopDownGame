@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using TopDownGame.Components;
+using TopDownGame.Components.Weapons.WeaponSystem;
 using WinterRose.Monogame;
 using WinterRose.Monogame.UI;
 using WinterRose.Monogame.Worlds;

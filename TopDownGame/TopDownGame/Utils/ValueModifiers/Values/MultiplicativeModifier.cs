@@ -5,7 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopDownGame.Utils.ValueModifiers
+namespace TopDownGame.Utility.ValueModifiers
 {
     internal class MultiplicativeModifier<T> : ValueModifier<T> where T : INumber<T>
     {

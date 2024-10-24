@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TopDownGame.Utils.ValueModifiers;
+using TopDownGame.Utility.ValueModifiers;
+using TopDownGame.Utility.ValueModifiers.Values.SaticModifiers;
 
-namespace TopDownGame.Utils;
+namespace TopDownGame.Utility;
 
 /// <summary>
 /// Holds armor value for whatever can be damaged.... or anything else really.... lmao
@@ -19,19 +20,26 @@ internal class Armor
     /// </summary>
     public float BaseArmor
     {
-        get => baseArmor;
+        get => SubtractiveArmorModifier.BaseValue;
         set
         {
             if (value is < 0 or > 1)
                 throw new ArgumentException("Value must be between 0 and 1");
-            baseArmor = value;
+            SubtractiveArmorModifier.SetBaseValue(value);
         }
     }
+
     /// <summary>
-    /// Values that are added onto the armor
+    /// The armor based on current modifiers
     /// </summary>
-    public AdditiveModifier<float> AddtitiveArmorModifier { get; set; } = new();
-    private float baseArmor = .99f;
+    public float CurrentArmor => SubtractiveArmorModifier.Value;
+    /// <summary>
+    /// Values that are added onto the armor<br></br><br></br>
+    /// 
+    /// When armor is 0 damage is 100% reduced, when armor is 1 damage is 0% reduced.<br></br>
+    /// add a modifier of .1 to result in a armor of .9 for 10% armor and thus 10% damage reduction 
+    /// </summary>
+    public StaticSubtractiveModifier<float> SubtractiveArmorModifier { get; set; } = new();
 
     /// <summary>
     /// Gets the damage reduced by the armor value.
@@ -39,9 +47,5 @@ internal class Armor
     /// <param name="value">The raw damage value that is received.</param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public float CalculateReducedArmor(float rawDamage)
-    {
-        float armor = AddtitiveArmorModifier.Modify(BaseArmor);
-        return rawDamage * armor;
-    }
+    public float CalculateReducedArmor(float rawDamage) => rawDamage * CurrentArmor;
 }

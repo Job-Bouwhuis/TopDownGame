@@ -1,9 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TopDownGame.Components;
 using TopDownGame.Components.Weapons.WeaponSystem;
+using TopDownGame.Utility;
 using WinterRose.Monogame;
 using WinterRose.Monogame.UI;
 using WinterRose.Monogame.Worlds;
+using WinterRose.Reflection;
 
 namespace TopDownGame.Worlds
 {
@@ -34,12 +39,13 @@ namespace TopDownGame.Worlds
                 obj.transform.position = new Vector2(MonoUtils.ScreenCenter.X, 120);
             });
 
-            var bullet = titleText.AttachComponent<Bullet>();
-            int key = bullet.AdditiveDamageModifier.Add(2);
-            bullet.AdditiveDamageModifier.Remove(key);
+            Vitality test = new();
+            test.Armor.BaseArmor = .95f;
+            test.Health.MaxHealth = 10000;
 
-            float damage = bullet.GetDamageDealt();
+            test.DealDamage(1000);
 
+            Utils.ForceAttachComponent(titleText.owner, test);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using TopDownGame.Utils.ValueModifiers;
+﻿using TopDownGame.Utility.ValueModifiers;
 using WinterRose.Monogame;
 using WinterRose.Monogame.Worlds;
 
@@ -10,9 +10,12 @@ internal class Bullet : ObjectComponent
     public AdditiveModifier<float> AdditiveDamageModifier { get; set; } = new();
     public MultiplicativeModifier<float> MultiplicativeDamageModifier { get; set; } = new();
 
-    public float GetDamageDealt()
+    public float Damage
     {
-        float additiveResult = AdditiveDamageModifier.Modify(BaseDamage);
-        return MultiplicativeDamageModifier.Modify(additiveResult);
+        get
+        {
+            float additiveResult = AdditiveDamageModifier.Modify(BaseDamage);
+            return MultiplicativeDamageModifier.Modify(additiveResult);
+        }
     }
 }

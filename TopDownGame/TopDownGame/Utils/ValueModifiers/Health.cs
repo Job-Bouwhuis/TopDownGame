@@ -1,15 +1,16 @@
 ﻿using System;
+using TopDownGame.Utils.ValueModifiers;
 using WinterRose;
 using WinterRose.Monogame;
 
-namespace TopDownGame.Utils.ValueModifiers
+namespace TopDownGame.Utils
 {
     /// <summary>
     /// Health component. anything that has health should use this component.
     /// </summary>
-    internal class Health : ObjectComponent
+    internal class Health
     {
-        public int MaxHealth => AddtitiveHealthModifier.Modify(BaseHealth);
+        public int MaxHealth => AddititiveHealthModifier.Modify(BaseHealth);
         public int CurrentHealth => currentHealth;
         public int BaseHealth
         {
@@ -21,21 +22,20 @@ namespace TopDownGame.Utils.ValueModifiers
                 baseHealth = value;
             }
         }
-        public AdditiveModifier<int> AddtitiveHealthModifier { get; set; } = new();
-        public Armor Armor { get; set; }
+        public AdditiveModifier<int> AddititiveHealthModifier { get; set; } = new();
         private int baseHealth = 1;
         private int currentHealth = 1;
+        public Armor Armor;
 
-        public void DealDamage(float damage)
+        public void Hurt(int damage)
         {
-            float reduceDamage = Armor.Modify(damage);
-            int resultingDamage = reduceDamage.Round(1, MidpointRounding.AwayFromZero);
-            currentHealth -= resultingDamage;
+            currentHealth -= damage;
+            currentHealth = Math.Max(currentHealth, 0);
         }
 
-        public void Heal(int health)
+        public void Heal(int amount)
         {
-            currentHealth += health;
+            currentHealth += amount;
             currentHealth = Math.Max(currentHealth, MaxHealth);
         }
 

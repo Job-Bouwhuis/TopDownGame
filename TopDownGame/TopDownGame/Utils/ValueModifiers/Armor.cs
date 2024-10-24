@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopDownGame.Utils.ValueModifiers;
 
-namespace TopDownGame.Utils.ValueModifiers;
+namespace TopDownGame.Utils;
 
 /// <summary>
 /// Holds armor value for whatever can be damaged.... or anything else really.... lmao
 /// </summary>
-internal class Armor : ValueModifier<float>
+internal class Armor
 {
     /// <summary>
     /// The base armor. a value between 0 and 1. Where 0 is full invulnerability <br></br><br></br>
@@ -26,6 +27,9 @@ internal class Armor : ValueModifier<float>
             baseArmor = value;
         }
     }
+    /// <summary>
+    /// Values that are added onto the armor
+    /// </summary>
     public AdditiveModifier<float> AddtitiveArmorModifier { get; set; } = new();
     private float baseArmor = .99f;
 
@@ -35,9 +39,9 @@ internal class Armor : ValueModifier<float>
     /// <param name="value">The raw damage value that is received.</param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public override float Modify(float value)
+    public float CalculateReducedArmor(float rawDamage)
     {
         float armor = AddtitiveArmorModifier.Modify(BaseArmor);
-        return value * armor;
+        return rawDamage * armor;
     }
 }

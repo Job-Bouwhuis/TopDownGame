@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TopDownGame.Utils;
 using WinterRose.Monogame;
 
-namespace TopDownGame.Components.Weapons.WeaponSystem
-{
-    internal class Magazine : ObjectComponent
-    {
+namespace TopDownGame.Components.Weapons.WeaponSystem;
 
-    }
+internal class Magazine : ObjectComponent
+{
 }

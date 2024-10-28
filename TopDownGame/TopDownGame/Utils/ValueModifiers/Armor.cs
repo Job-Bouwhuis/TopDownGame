@@ -33,6 +33,7 @@ internal class Armor
     /// The armor based on current modifiers
     /// </summary>
     public float CurrentArmor => SubtractiveArmorModifier.Value;
+
     /// <summary>
     /// Values that are added onto the armor<br></br><br></br>
     /// 
@@ -47,5 +48,5 @@ internal class Armor
     /// <param name="value">The raw damage value that is received.</param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public float CalculateReducedArmor(float rawDamage) => rawDamage * CurrentArmor;
+    public int CalculateReducedArmor(int rawDamage) => (int)Math.Round(rawDamage * CurrentArmor, 0, MidpointRounding.AwayFromZero);
 }

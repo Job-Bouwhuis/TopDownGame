@@ -40,7 +40,7 @@ namespace TopDownGame.Worlds
             });
 
             Vitality test = new();
-            test.Armor.BaseArmor = .95f;
+            test.Armor.BaseArmor = .99f;
             test.Health.MaxHealth = 10000;
 
             test.DealDamage(1000);

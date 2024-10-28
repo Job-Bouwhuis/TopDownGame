@@ -44,10 +44,9 @@ internal class Vitality : ObjectComponent
     /// Calculates the correct damage depending on <see cref="Armor"/>, and deals it to <see cref="Health"/>
     /// </summary>
     /// <param name="damage"></param>
-    public void DealDamage(float damage)
+    public void DealDamage(int damage)
     {
-        float reduceDamage = Armor.CalculateReducedArmor(damage);
-        int resultingDamage = reduceDamage.Round(1, MidpointRounding.AwayFromZero);
-        Health.DealDamage(resultingDamage);
+        int reducedDamage = Armor.CalculateReducedArmor(damage);
+        Health.DealDamage(reducedDamage);
     }
 }

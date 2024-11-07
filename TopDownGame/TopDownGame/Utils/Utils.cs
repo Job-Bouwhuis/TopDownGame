@@ -19,9 +19,12 @@ namespace TopDownGame.Utility
         /// <param name="component"></param>
         public static void ForceAttachComponent(WorldObject obj, ObjectComponent component)
         {
-            ReflectionHelper<WorldObject> rh = new(ref obj);
-            List<ObjectComponent> components = (List<ObjectComponent>)rh.GetValueFrom("components");
+            ReflectionHelper<WorldObject> objectRef = new(ref obj);
+            List<ObjectComponent> components = (List<ObjectComponent>)objectRef.GetValueFrom("components");
             components.Add(component);
+
+            ReflectionHelper<ObjectComponent> compRef = new(ref component);
+            compRef.SetValue("_owner", obj);
         }
     }
 }
